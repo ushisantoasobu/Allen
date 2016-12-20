@@ -10,12 +10,12 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    private var some_variable = 12345
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        let message = "Hello!"
     }
 
     override var representedObject: Any? {

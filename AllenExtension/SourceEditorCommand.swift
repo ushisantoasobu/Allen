@@ -15,7 +15,6 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
         let textBuffer = invocation.buffer
 
-        
         let lines = textBuffer.lines
         let selections = textBuffer.selections
         
@@ -28,20 +27,22 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         let start = selection.start.column
         let end = selection.end.column
 
-        var targetLineString = lines[line] as! String
+        let string = lines[line] as! String
 
-        let startIndex = targetLineString.index(targetLineString.startIndex, offsetBy: start)
-        let endIndex = targetLineString.index(targetLineString.startIndex, offsetBy: end)
+        let startIndex = string.index(string.startIndex, offsetBy: start)
+        let endIndex = string.index(string.startIndex, offsetBy: end)
         let range = startIndex..<endIndex
-        let selectedString = targetLineString.substring(with: range)
+        let selectedString = string.substring(with: range)
 
-//        lines[line] = targetLineString.replaceSubrange(range, with: self.snake2Camel(string: selectedString))
-        lines[line] = targetLineString.replacingCharacters(in: range, with: self.snake2Camel(string: selectedString))
+        lines[line] = string.replacingCharacters(in: range, with: self.snake2Camel(string: selectedString))
 
         completionHandler(nil)
     }
 
-    // Ref: https://github.com/speee/jsonschema2swift/
+    /*
+     * snake to camel
+     * Ref: https://github.com/speee/jsonschema2swift/
+     */
     private func snake2Camel(string: String) -> String{
         let items = string.components(separatedBy: "_")
         var camelCase = ""
