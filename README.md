@@ -4,7 +4,7 @@
 
 ## GIF
 
-TODO...
+![Alt text](https://github.com/ushisantoasobu/Allen/blob/master/sample.gif)
 
 ## What's this??
 
